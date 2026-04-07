@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Naviga GmbH | Navigation durch die Finanzwelt</title>
+  <meta name="description" content="Ein starkes Netzwerk für zukunftsorientierte Finanzberater. Transformation, Coaching und nachhaltiges Wachstum in der digitalen Finanzwelt." />
+  <meta property="og:title" content="Naviga GmbH | Navigation durch die Finanzwelt" />
+  <meta property="og:description" content="Transformiere die Finanzbranche mit Integrität, Nachhaltigkeit und Herz." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ============ NAVIGATION ============ -->
+  <nav class="nav" id="nav" aria-label="Hauptnavigation">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-icon" aria-hidden="true">⚓</div>
+        NAViGA
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="firmen.html">Firmen</a></li>
+        <li><a href="privatpersonen.html">Privatpersonen</a></li>
+        <li><a href="die-naviga.html">Die Naviga</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+      </ul>
+      <a href="kontakt.html" class="btn btn-primary nav-cta">Erstgespräch vereinbaren</a>
+      <button class="nav-burger" id="navBurger" aria-label="Menü öffnen" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Overlay -->
+  <div class="nav-mobile-overlay" id="navOverlay" role="dialog" aria-label="Navigation">
+    <button class="nav-mobile-close" id="navClose" aria-label="Menü schliessen">✕</button>
+    <a href="firmen.html">Firmen</a>
+    <a href="privatpersonen.html">Privatpersonen</a>
+    <a href="die-naviga.html">Die Naviga</a>
+    <a href="kontakt.html">Kontakt</a>
+    <a href="kontakt.html" class="btn btn-primary" style="font-size:1rem;margin-top:1rem;">Erstgespräch vereinbaren</a>
+  </div>
+
+  <main>
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" aria-labelledby="heroTitle">
+      <div class="hero-left">
+        <span class="eyebrow fade-up">Navigation durch die Finanzwelt</span>
+        <h1 class="hero-title fade-up" id="heroTitle" style="transition-delay:0.1s">
+          Ein starkes Netzwerk für
+          <span class="accent-word">zukunftsorientierte</span>
+          Finanzberater
+        </h1>
+        <p class="hero-subtitle fade-up" style="transition-delay:0.2s">
+          Du bist Teil der Zukunft – Transformiere die Finanzbranche mit Integrität, Nachhaltigkeit und Herz.
+        </p>
+        <div class="hero-cta-group fade-up" style="transition-delay:0.3s">
+          <a href="kontakt.html" class="btn btn-primary">
+            Unverbindliches Erstgespräch vereinbaren
+            <span class="btn-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="#services" class="btn btn-outline-dark">Leistungen entdecken</a>
+        </div>
+      </div>
+
+      <div class="hero-right" aria-hidden="true">
+        <div class="hero-blob-wrap">
+          <div class="hero-blob"></div>
+        </div>
+        <div class="hero-blob-text fade-in" style="transition-delay:0.5s">
+          <h2>Die Finanzberater<br><strong>von Morgen</strong></h2>
+        </div>
+      </div>
+
+      <div class="hero-scroll-indicator" aria-hidden="true">
+        <svg width="24" height="38" viewBox="0 0 24 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="1" width="22" height="36" rx="11" stroke="currentColor" stroke-width="1.5"/>
+          <circle cx="12" cy="10" r="3" fill="currentColor">
+            <animateTransform attributeName="transform" type="translate" values="0,0;0,12;0,0" dur="2s" repeatCount="indefinite"/>
+          </circle>
+        </svg>
+        <span>Scroll</span>
+      </div>
+    </section>
+
+    <!-- ============ SCROLL-TEXT SECTION ============ -->
+    <section class="scroll-text-section" aria-labelledby="problemTitle">
+      <div class="container">
+        <div class="scroll-text-inner">
+          <span class="eyebrow fade-up">Warum Naviga?</span>
+          <h2 class="fade-up" id="problemTitle" style="color:var(--text-white);margin-bottom:2.5rem;transition-delay:0.1s">
+            Überholte Strukturen und Normen,<br>
+            <span class="accent-word">deren Ende bevorsteht</span>
+          </h2>
+
+          <div class="scroll-pain-points stagger-children fade-up" style="transition-delay:0.2s">
+            <span class="pain-tag"><span class="x-icon">✗</span> Kurzfristige Provisionsgier</span>
+            <span class="pain-tag"><span class="x-icon">✗</span> Hohe Mitarbeiterfluktuationsrate</span>
+            <span class="pain-tag"><span class="x-icon">✗</span> Unmoralische Geschäftspraktiken</span>
+          </div>
+
+          <p class="reveal-text" aria-label="Erklärungstext">
+            Durch das im Internet vorhandene finanzielle Wissen realisieren diese Tatsachen immer mehr Endkunden. Mittelfristig wird dies zum wirtschaftlichen Untergang all derer Finanzberatungsunternehmen führen, die an diesen überholten Strukturen und Normen festhalten. Die Naviga unterstützt Finanzberatungsunternehmen bei der Transformation zu einem zeitgemässen und zukunftstauglichen Mindset.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SPLIT SECTION: ERFOLG ============ -->
+    <section class="split-section" aria-labelledby="erfolgTitle">
+      <div class="container">
+        <div class="grid-2">
+          <div class="split-image fade-up">
+            <div class="split-image-placeholder" role="img" aria-label="Person arbeitet am Laptop in modernem Büro">
+              💼
+            </div>
+          </div>
+          <div class="split-content fade-up" style="transition-delay:0.15s">
+            <span class="eyebrow">Der Weg nach vorne</span>
+            <h2 id="erfolgTitle">
+              Ungeahnten <span class="accent-word">Erfolg</span> in der digitalen Zeit der Finanzberatung erreichen
+            </h2>
+            <ul class="split-value-list" role="list">
+              <li class="split-value-item">
+                <span class="split-value-icon" aria-hidden="true">✓</span>
+                Vermittlung bedürfnisorientierter finanzieller Bildung an Kunden
+              </li>
+              <li class="split-value-item">
+                <span class="split-value-icon" aria-hidden="true">✓</span>
+                Nachhaltiger Vermögensaufbau für sich selbst und Kunden
+              </li>
+              <li class="split-value-item">
+                <span class="split-value-icon" aria-hidden="true">✓</span>
+                Langfristige Partnerschaften → hohe wiederkehrende Geschäftsprofite
+              </li>
+            </ul>
+            <p class="split-body">
+              Erfolgreiche Finanzberatungsunternehmen der digitalen, modernen Welt haben Impact auf unsere Gesellschaft. Wer in Richtung dieses modernen und gesamtheitlichen Mindsets navigiert, wird in der Welt von morgen ungeahnten Erfolg erreichen.
+            </p>
+            <a href="firmen.html" class="btn btn-outline">
+              Für Unternehmen <span class="btn-arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FEATURES: AUSWIRKUNGEN ============ -->
+    <section class="features-section" aria-labelledby="featuresTitle">
+      <div class="container">
+        <div class="features-header">
+          <span class="eyebrow fade-up">Spürbare Resultate</span>
+          <h2 class="fade-up" id="featuresTitle" style="transition-delay:0.1s">
+            Spürbare Auswirkungen dieser<br>
+            <span class="accent-word">unternehmerischen Transformation</span>
+          </h2>
+        </div>
+
+        <div class="features-grid stagger-children fade-up" style="transition-delay:0.2s">
+          <div class="feature-circle-item">
+            <div class="feature-circle">
+              <span class="feature-icon" aria-hidden="true">🤝</span>
+              <span class="feature-label">Tiefe Mitarbeiter-<br>fluktuationsrate</span>
+            </div>
+          </div>
+          <div class="feature-circle-item">
+            <div class="feature-circle">
+              <span class="feature-icon" aria-hidden="true">🏆</span>
+              <span class="feature-label">Anziehende<br>Arbeitgebermarke</span>
+            </div>
+          </div>
+          <div class="feature-circle-item">
+            <div class="feature-circle">
+              <span class="feature-icon" aria-hidden="true">🔗</span>
+              <span class="feature-label">Unbegrenzte<br>Leadquelle</span>
+            </div>
+          </div>
+          <div class="feature-circle-item">
+            <div class="feature-circle">
+              <span class="feature-icon" aria-hidden="true">💛</span>
+              <span class="feature-label">Loyale Kunden &amp;<br>Partnerschaften</span>
+            </div>
+          </div>
+          <div class="feature-circle-item">
+            <div class="feature-circle">
+              <span class="feature-icon" aria-hidden="true">📈</span>
+              <span class="feature-label">Hohe wiederkehrende<br>Geschäftsprofite</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SERVICES SECTION ============ -->
+    <section class="services-section" id="services" aria-labelledby="servicesTitle">
+      <div class="container">
+        <div class="services-header fade-up">
+          <span class="eyebrow">Unsere Unterstützung</span>
+          <h2 id="servicesTitle">Workshop, Seminar oder Coaching</h2>
+          <p style="color:var(--text-body);max-width:580px;font-size:0.975rem;line-height:1.7;margin-top:1rem;opacity:0.8">
+            Was für Dich und Dein Unternehmen am besten geeignet ist, wird in Deiner unternehmerischen Routenplanung besprochen.
+          </p>
+        </div>
+
+        <div class="services-grid stagger-children">
+          <!-- Card 1 -->
+          <article class="service-card">
+            <div class="service-number">01</div>
+            <h3>Workshop</h3>
+            <p>Gruppenformat für effiziente Wissensvermittlung. Praxisnah und direkt anwendbar.</p>
+            <ul class="service-list" role="list">
+              <li>Interaktives Gruppenformat</li>
+              <li>Praxisnahe Übungen</li>
+              <li>Sofort anwendbares Wissen</li>
+              <li>Netzwerk mit Gleichgesinnten</li>
+            </ul>
+          </article>
+          <!-- Card 2 -->
+          <article class="service-card">
+            <div class="service-number">02</div>
+            <h3>Seminar</h3>
+            <p>Vertieftes Lernen in der Gruppe. Intensiv und nachhaltig auf Deinen Berufsalltag ausgerichtet.</p>
+            <ul class="service-list" role="list">
+              <li>Mehrtägige Intensivformate</li>
+              <li>Fundiertes Fachwissen</li>
+              <li>Handlungsstrategien</li>
+              <li>Zertifizierte Inhalte</li>
+            </ul>
+          </article>
+          <!-- Card 3 -->
+          <article class="service-card">
+            <div class="service-number">03</div>
+            <h3>Coaching</h3>
+            <p>Individuell und persönlich. 1:1 auf Deine Situation und Ziele zugeschnitten.</p>
+            <ul class="service-list" role="list">
+              <li>Individuelle Routenplanung</li>
+              <li>Persönliche Begleitung</li>
+              <li>Messbare Fortschritte</li>
+              <li>Langfristige Partnerschaft</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CTA BLOCK ============ -->
+    <section class="cta-section" aria-labelledby="ctaTitle">
+      <div class="container">
+        <span class="eyebrow fade-up">Jetzt starten</span>
+        <h2 class="fade-up" id="ctaTitle" style="transition-delay:0.1s">
+          Plane jetzt den Erfolg<br>Deiner unternehmerischen Zukunft
+        </h2>
+        <p class="fade-up" style="transition-delay:0.2s">
+          Im unverbindlichen und kostenlosen Erstgespräch überprüfst Du gemeinsam mit der Naviga Deine aktuelle unternehmerische Situation und wir erarbeiten Deine individuelle Route.
+        </p>
+        <div class="cta-buttons fade-up" style="transition-delay:0.3s">
+          <a href="kontakt.html" class="btn btn-primary">
+            Unverbindliches Erstgespräch vereinbaren
+            <span class="btn-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="die-naviga.html" class="btn btn-outline">Über uns erfahren</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TESTIMONIALS ============ -->
+    <section class="testimonials-section" aria-labelledby="testimonialsTitle">
+      <div class="container">
+        <div class="testimonials-header fade-up">
+          <span class="eyebrow">Das sagen unsere Partner</span>
+          <h2 id="testimonialsTitle">Stimmen aus unserem Netzwerk</h2>
+        </div>
+
+        <div class="carousel-wrap fade-up" style="transition-delay:0.15s">
+          <div class="carousel-track-outer">
+            <div class="carousel-track">
+
+              <!-- Testimonial 1 -->
+              <div class="testimonial-card">
+                <div class="testimonial-quote-icon" aria-hidden="true">"</div>
+                <p class="testimonial-text">
+                  Die Finanzbranche befindet sich im langersehnten Wandel. Das Team der Naviga GmbH unterstützte mich bei der Gründung meines Unternehmens und ich freue mich über die kompetente Partnerschaft, welche den Zugang zu einem starken Netzwerk ermöglicht. Dank der Zusammenarbeit konnte ich den Mehrwert für meine Kunden steigern und folglich auch für die Verix GmbH.
+                </p>
+                <div class="testimonial-author">
+                  <div class="testimonial-avatar" aria-hidden="true">IR</div>
+                  <div>
+                    <div class="testimonial-name">Igor Radic</div>
+                    <div class="testimonial-role">CEO, Verix GmbH</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Testimonial 2 -->
+              <div class="testimonial-card">
+                <div class="testimonial-quote-icon" aria-hidden="true">"</div>
+                <p class="testimonial-text">
+                  Mit der Naviga zusammenzuarbeiten ist für uns eine Bereicherung in der ganzen Bandbreite. Emmanuel und sein Team sind extrem kompetent und arbeiten sehr langfristig. Das ist genau die Nachhaltigkeit, auf die wir bei uns grossen Wert legen!
+                </p>
+                <div class="testimonial-author">
+                  <div class="testimonial-avatar" aria-hidden="true">JM</div>
+                  <div>
+                    <div class="testimonial-name">Joël Mesot</div>
+                    <div class="testimonial-role">CEO, Mesot Agency</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Testimonial 3 -->
+              <div class="testimonial-card">
+                <div class="testimonial-quote-icon" aria-hidden="true">"</div>
+                <p class="testimonial-text">
+                  Durch das Konzept der Naviga konnte ich erkennen und lernen wie der Beruf als Berater moralisch integer ausgeführt werden kann, sodass man für seine Zeit und sein Engagement fair entlohnt wird und der Kunde genauso davon profitiert. Es ist wundervoll, gemeinsam mit Gleichgesinnten die Leidenschaft für das Thema Finanzen zu teilen.
+                </p>
+                <div class="testimonial-author">
+                  <div class="testimonial-avatar" aria-hidden="true">DS</div>
+                  <div>
+                    <div class="testimonial-name">Daniel Seglias</div>
+                    <div class="testimonial-role">Geschäftsführer, Daniel Seglias GmbH</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Testimonial 4 -->
+              <div class="testimonial-card">
+                <div class="testimonial-quote-icon" aria-hidden="true">"</div>
+                <p class="testimonial-text">
+                  Durch die Zusammenarbeit habe ich die Wichtigkeit von Prozessen in einer Beratung gelernt. Dadurch sind meine Beratungen nun klar und systematisch aufgebaut, was zu weniger Aufwand und mehr Erfolg führt.
+                </p>
+                <div class="testimonial-author">
+                  <div class="testimonial-avatar" aria-hidden="true">SS</div>
+                  <div>
+                    <div class="testimonial-name">Severin Schär</div>
+                    <div class="testimonial-role">Geschäftsführer, SNS Personality Builder GmbH</div>
+                  </div>
+                </div>
+              </div>
+
+            </div><!-- /carousel-track -->
+          </div><!-- /outer -->
+
+          <div class="carousel-controls">
+            <div class="carousel-dots" role="tablist" aria-label="Testimonial Navigation">
+              <button class="carousel-dot active" role="tab" aria-selected="true" aria-label="Testimonial 1"></button>
+              <button class="carousel-dot" role="tab" aria-selected="false" aria-label="Testimonial 2"></button>
+              <button class="carousel-dot" role="tab" aria-selected="false" aria-label="Testimonial 3"></button>
+              <button class="carousel-dot" role="tab" aria-selected="false" aria-label="Testimonial 4"></button>
+            </div>
+            <div class="carousel-arrows">
+              <button class="carousel-btn carousel-prev" aria-label="Vorheriges Testimonial">←</button>
+              <button class="carousel-btn carousel-next" aria-label="Nächstes Testimonial">→</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer" aria-label="Seitenende">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">
+            <div class="nav-logo-icon" aria-hidden="true">⚓</div>
+            NAViGA
+          </a>
+          <p class="footer-desc">
+            Navigation durch die Finanzwelt – mit Integrität, Nachhaltigkeit und Herz.
+          </p>
+          <div class="footer-contact">
+            <a href="mailto:admin@naviga.ch">✉ admin@naviga.ch</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <nav class="footer-links" aria-label="Footer Navigation">
+            <a href="firmen.html">Firmen</a>
+            <a href="privatpersonen.html">Privatpersonen</a>
+            <a href="die-naviga.html">Die Naviga</a>
+            <a href="kontakt.html">Kontakt</a>
+          </nav>
+        </div>
+
+        <div class="footer-col">
+          <h4>Standorte</h4>
+          <div class="footer-address">
+            <span class="footer-address-item">
+              <span class="footer-address-city">Baar</span>
+              Sihlbruggstrasse 105<br>6340 Baar
+            </span>
+            <span class="footer-address-item" style="margin-top:0.75rem">
+              <span class="footer-address-city">Bern</span>
+              Schlösslistrasse 19<br>3008 Bern
+            </span>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Rechtliches</h4>
+          <nav class="footer-links" aria-label="Rechtliche Links">
+            <a href="https://www.naviga.ch/impressum" target="_blank" rel="noopener">Impressum</a>
+            <a href="https://www.naviga.ch/datenschutz" target="_blank" rel="noopener">Datenschutz</a>
+            <a href="https://www.naviga.ch/allgemeine-geschaftsbedingungen-agb" target="_blank" rel="noopener">AGB</a>
+          </nav>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2024 Naviga GmbH. Alle Rechte vorbehalten.</p>
+        <div class="footer-badges">
+          <a href="https://www.cicero.ch/de/informationspflicht-vag-45" target="_blank" rel="noopener" class="footer-badge">
+            ✓ Cicero
+          </a>
+          <a href="https://www.regservices.ch/beraterregister/beratersuche/" target="_blank" rel="noopener" class="footer-badge">
+            ✓ Regservices
+          </a>
+          <a href="https://www.finma.ch/de/bewilligung/versicherungsvermittlung/registersuche/F01410816" target="_blank" rel="noopener" class="footer-badge">
+            ✓ FINMA F01410816
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

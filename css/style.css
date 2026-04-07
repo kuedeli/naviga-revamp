@@ -39,6 +39,8 @@
 
 /* ☀️ LIGHT MODE OVERRIDES */
 [data-theme="light"] {
+  --nav-bg:        rgba(255, 255, 255, 0.7);
+  --nav-bg-scroll: rgba(255, 255, 255, 0.92);
   --bg-main:       #ffffff;
   --bg-alt:        #f8f9fa;
   --bg-deep:       #f4f3ef;
@@ -168,7 +170,7 @@ h3 { font-size: 1.3rem; }
 
 .btn-outline-dark {
   border: 1.5px solid rgba(0,0,0,0.25);
-  color: var(--text-inverse);
+  color: var(--text-inverse); /* Ensure this is used */
 }
 .btn-outline-dark:hover {
   border-color: var(--accent);
@@ -187,7 +189,7 @@ h3 { font-size: 1.3rem; }
    but blue+gold get destroyed. invert makes everything a clean white mark. */
 .footer .nav-logo-img {
   height: 44px;
-  filter: brightness(0) invert(1);
+  filter: brightness(0) invert(1) !important;
   mix-blend-mode: normal;
   opacity: 0.9;
 }
@@ -205,13 +207,13 @@ h3 { font-size: 1.3rem; }
   transition: background 0.4s ease, box-shadow 0.4s ease, border-bottom-color 0.4s;
   border-bottom: 1px solid transparent;
   /* Subtle dark band — makes white links readable on BOTH light and dark hero panels */
-  background: rgba(24, 29, 38, 0.45);
+  background: var(--nav-bg, rgba(24, 29, 38, 0.45));
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
 }
 
 .nav.scrolled {
-  background: rgba(40, 47, 58, 0.92);
+  background: var(--nav-bg-scroll, rgba(40, 47, 58, 0.92));
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   box-shadow: 0 2px 40px rgba(0,0,0,0.2);
@@ -248,7 +250,7 @@ h3 { font-size: 1.3rem; }
   display: block;
   object-fit: contain;
   /* DEFAULT (DARK MODE): Invert dark logo to white */
-  filter: brightness(0) invert(1);
+  filter: brightness(0) invert(1) !important;
   border-radius: 4px;
 }
 
@@ -295,37 +297,46 @@ h3 { font-size: 1.3rem; }
   transform: translateY(-2px);
 }
 
+
+.theme-toggle {
+  position: relative;
+  overflow: hidden;
+}
 .theme-toggle svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s;
 }
 
-/* Default (Dark Mode): Show SUN to switch to light */
+/* Default (Dark Mode): Sun visible */
 .theme-toggle .sun {
-  transform: translateY(0);
   opacity: 1;
+  transform: translate(-50%, -50%);
 }
 .theme-toggle .moon {
-  transform: translateY(-30px);
   opacity: 0;
-  display: none;
+  transform: translate(-50%, 150%);
+  display: block !important; /* Ensure it stays in DOM for transition */
 }
 
-/* Light Mode: Show MOON to switch back to dark */
+/* Light Mode: Moon visible */
 [data-theme="light"] .theme-toggle .sun {
-  transform: translateY(30px);
   opacity: 0;
+  transform: translate(-50%, -150%);
 }
 [data-theme="light"] .theme-toggle .moon {
-  transform: translateY(0);
   opacity: 1;
-  display: block !important;
+  transform: translate(-50%, -50%);
 }
+
 
 /* Footer logo — Refined contrast.
    In both modes, the footer is dark, so the logo must be white. */
 .footer .nav-logo-img {
   height: 44px;
-  filter: brightness(0) invert(1);
+  filter: brightness(0) invert(1) !important;
   mix-blend-mode: normal;
   opacity: 0.95;
   transition: opacity 0.3s;
@@ -444,7 +455,7 @@ h3 { font-size: 1.3rem; }
 .hero-title {
   font-size: clamp(2rem, 4.5vw, 4.2rem);
   font-weight: 900;
-  color: var(--text-inverse);
+  color: var(--text-inverse); /* Ensure this is used */
   line-height: 1.05;
   margin-bottom: 1.5rem;
   letter-spacing: -0.02em;
@@ -487,6 +498,7 @@ h3 { font-size: 1.3rem; }
 
 /* Hero right — gradient blob */
 .hero-right {
+  background: var(--bg-main);
   position: relative;
   background: var(--bg-main);
   overflow: hidden;
@@ -542,13 +554,13 @@ h3 { font-size: 1.3rem; }
 }
 
 /* =============================================
-   8. SCROLL-TEXT SECTION (word reveal)
+   8. SCROLL-TEXT SECTION (High-End Sticky Reveal)
    ============================================= */
 .scroll-text-section {
   background: var(--bg-deep);
-  padding: clamp(5rem, 12vw, 10rem) 0;
+  min-height: 180vh; /* Scroll depth for animation */
   position: relative;
-  overflow: hidden;
+  padding: 0; /* Sticky inner handles padding */
 }
 
 .scroll-text-section::before {
@@ -558,17 +570,26 @@ h3 { font-size: 1.3rem; }
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--accent), transparent);
   opacity: 0.4;
+  z-index: 5;
 }
 
 .scroll-text-inner {
-  max-width: 900px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 5vw, 4rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .scroll-pain-points {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
 }
 
 .pain-tag {
@@ -576,12 +597,16 @@ h3 { font-size: 1.3rem; }
   align-items: center;
   gap: 0.5rem;
   background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid var(--border-light);
   border-radius: 100px;
   padding: 0.5rem 1.2rem;
   font-size: 0.85rem;
   color: var(--text-alt);
 }
+[data-theme="light"] .pain-tag {
+  background: rgba(13, 17, 23, 0.05);
+}
+
 .pain-tag .x-icon {
   color: #e06060;
   font-weight: 700;
@@ -589,23 +614,30 @@ h3 { font-size: 1.3rem; }
 }
 
 .reveal-text {
-  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  font-size: clamp(1.4rem, 2.8vw, 2.1rem);
   font-weight: 500;
-  line-height: 1.65;
+  line-height: 1.8; /* Increased for editorial quality */
   letter-spacing: -0.01em;
-  color: var(--text-muted);
+  color: var(--text-alt);
 }
 
 .reveal-word {
   display: inline;
-  /* UI/UX Pro Max §7: 150–300ms for micro-interactions */
-  transition: color 0.25s ease, opacity 0.25s ease;
-  opacity: 0.12;
+  /* UI/UX Pro Max: slightly longer for luxury feel */
+  transition: color 0.35s ease, opacity 0.35s ease, transform 0.35s ease;
+  opacity: 0.15;
+  transform: translateY(2px);
 }
-/* Fully lit: white at opacity:1 = contrast ratio ~9.5:1 (WCAG AAA) */
-.reveal-word.lit { color: #ffffff; opacity: 1; }
-/* Accent: #D0A87C at opacity:1 on #181d27 = ~6.8:1 (WCAG AA) */
-.reveal-word.accent-lit { color: var(--accent); opacity: 1; }
+.reveal-word.lit { 
+  color: var(--text-main); 
+  opacity: 1; 
+  transform: translateY(0);
+}
+.reveal-word.accent-lit { 
+  color: var(--accent); 
+  opacity: 1; 
+  transform: translateY(0);
+}
 
 /* =============================================
    9. SPLIT CONTENT SECTION
@@ -838,7 +870,7 @@ h3 { font-size: 1.3rem; }
 }
 
 .services-header h2 {
-  color: var(--text-inverse);
+  color: var(--text-inverse); /* Ensure this is used */
   max-width: 640px;
 }
 .services-header .eyebrow { color: var(--accent-dark); }
@@ -886,7 +918,7 @@ h3 { font-size: 1.3rem; }
 }
 
 .service-card h3 {
-  color: var(--text-inverse);
+  color: var(--text-inverse); /* Ensure this is used */
   margin-bottom: 0.75rem;
   font-size: 1.4rem;
 }
@@ -988,7 +1020,7 @@ h3 { font-size: 1.3rem; }
   margin-bottom: 3rem;
 }
 
-.testimonials-header h2 { color: var(--text-inverse); }
+.testimonials-header h2 { color: var(--text-inverse); /* Ensure this is used */ }
 .testimonials-header .eyebrow { color: var(--accent-dark); }
 
 .carousel-wrap {
@@ -1025,7 +1057,7 @@ h3 { font-size: 1.3rem; }
 
 .testimonial-text {
   font-size: clamp(1rem, 2vw, 1.2rem);
-  color: var(--text-inverse);
+  color: var(--text-inverse); /* Ensure this is used */
   line-height: 1.75;
   font-style: italic;
   margin-bottom: 2rem;
@@ -1054,7 +1086,7 @@ h3 { font-size: 1.3rem; }
 
 .testimonial-name {
   font-weight: 700;
-  color: var(--text-inverse);
+  color: var(--text-inverse); /* Ensure this is used */
   font-size: 0.95rem;
 }
 
@@ -1101,7 +1133,7 @@ h3 { font-size: 1.3rem; }
   border-radius: 50%;
   border: 1.5px solid var(--border-light);
   background: var(--bg-card);
-  color: var(--text-inverse);
+  color: var(--text-inverse); /* Ensure this is used */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1120,9 +1152,10 @@ h3 { font-size: 1.3rem; }
    14. FOOTER
    ============================================= */
 .footer {
-  background: var(--bg-alt);
+  background: #1e2530; /* Always dark navy for premium contrast */
   border-top: 1px solid var(--border-main);
   padding: clamp(3rem, 6vw, 5rem) 0 2rem;
+  color: #ffffff; /* Ensure text in footer is always light */
 }
 
 .footer-grid {
@@ -1640,6 +1673,7 @@ h3 { font-size: 1.3rem; }
     min-height: auto;
   }
   .hero-right {
+  background: var(--bg-main);
     min-height: 40vh;
     order: -1;
   }
@@ -1670,4 +1704,56 @@ h3 { font-size: 1.3rem; }
   .cta-buttons { flex-direction: column; align-items: center; }
   .carousel-controls { flex-direction: column; gap: 1rem; }
   .subpage-hero h1 { font-size: clamp(1.8rem, 7vw, 3rem); }
+}
+
+/* Theme Polish */
+[data-theme="light"] .hero-subtitle,
+[data-theme="light"] .footer-desc,
+[data-theme="light"] .location-card p,
+[data-theme="light"] p {
+  opacity: 0.9 !important;
+  color: var(--text-body);
+}
+
+[data-theme="light"] .eyebrow {
+  opacity: 1 !important;
+  color: var(--accent-dark);
+}
+
+/* Fix for the "Scroll" text reveal in Light Mode */
+[data-theme="light"] .reveal-word {
+  color: rgba(13, 17, 23, 0.2); /* very light dark instead of very light white */
+}
+[data-theme="light"] .reveal-word.lit {
+  color: var(--text-main) !important;
+  opacity: 1 !important;
+}
+
+/* Increase contrast for the navigation logo in both modes */
+.nav-logo-img {
+  filter: brightness(0) invert(1) contrast(2) !important; /* Forces pure high-contrast white */
+}
+[data-theme="light"] .nav-logo-img {
+  filter: none !important; /* Standard dark logo on light */
+}
+
+
+/* Scrolled Nav Logo Contrast */
+[data-theme="light"] .nav.scrolled .nav-logo-img {
+  filter: brightness(0) invert(1) !important;
+}
+
+
+/* Visual Centering Overrides */
+.theme-toggle .sun {
+  transform: translate(-50%, -50%);
+}
+.theme-toggle .moon {
+  /* Shifted slightly to the right (-46% instead of -50%) for optical balance */
+  transform: translate(-46%, -50%);
+}
+
+/* Ensure Light Mode transition respects the visual shift */
+[data-theme="light"] .theme-toggle .moon {
+  transform: translate(-46%, -50%) !important;
 }

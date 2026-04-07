@@ -182,26 +182,27 @@ function initScrollTextReveal() {
     const windowH = window.innerHeight;
 
     /*
-     * FIXED TIMING: The reveal now starts as soon as the section
-     * enters the viewport and completes well before the user
-     * has scrolled past it. The reveal range is tightened to
-     * the comfortable reading zone (top 70% of the viewport).
-     *
-     * progress = 0: section top just enters the screen (bottom of viewport)
-     * progress = 1: section top has scrolled up to 30% of viewport height
+     * REFINED STICKY PROGRESS: 
+     * The reveal now happens over the extended height of the sticky section.
+     * enterPoint: section starts entering viewport
+     * exitPoint: section starts leaving viewport bottom
      */
-    const enterPoint  = windowH;          // section top == bottom of screen
-    const exitPoint   = windowH * 0.15;   // section top == 15% from top (well within view)
+    const enterPoint  = windowH * 0.8; 
+    const exitPoint   = -rect.height + (windowH * 0.5);
     const scrolledIn  = windowH - rect.top;
-    const range       = enterPoint - exitPoint;
+    const range       = windowH + rect.height - (windowH * 0.5);
     const progress    = Math.max(0, Math.min(1, scrolledIn / range));
 
     words.forEach((word, i) => {
-      // Each word lights up sequentially, staggered across the progress range
-      const wordThreshold = (i / words.length) * 0.75;
-      const wordProgress  = Math.max(0, (progress - wordThreshold) / 0.25);
-      const opacity       = Math.min(1, Math.max(0.12, wordProgress * 3));
-      const isLit         = wordProgress > 0.6;
+      // Seqential reveal: first word starts at progress 0.1, last starts at 0.85
+      const startShift    = 0.1;
+      const endShift      = 0.85;
+      const wordThreshold = startShift + (i / words.length) * (endShift - startShift);
+      
+      // wordProgress: how far along this specific word is in its flip (0 to 1)
+      const wordProgress  = Math.max(0, (progress - wordThreshold) / 0.12);
+      const opacity       = Math.min(1, Math.max(0.15, wordProgress * 2.5));
+      const isLit         = wordProgress > 0.45;
       const isAccent      = accentWords.some(aw => word.textContent.includes(aw));
 
       word.style.opacity = opacity;

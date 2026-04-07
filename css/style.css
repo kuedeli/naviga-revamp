@@ -1772,3 +1772,23 @@ h3 { font-size: 1.3rem; }
 [data-theme="light"] .reveal-word.accent-lit { color: #b8915f !important; opacity: 1 !important; }
 /* Tighten gap between reveal and next content */
 .scroll-text-section + section { padding-top: 2rem !important; }
+
+/* Light Mode Form Contrast */
+[data-theme="light"] .form-group input,
+[data-theme="light"] .form-group textarea {
+  background: #f8f9fa !important;
+  border: 1.5px solid rgba(0,0,0,0.1) !important;
+  color: #0d1117 !important;
+}
+[data-theme="light"] .form-group input::placeholder,
+[data-theme="light"] .form-group textarea::placeholder {
+  color: #718096 !important;
+}
+[data-theme="light"] .form-group label {
+  color: #4a5568 !important;
+}
+[data-theme="light"] .form-group input:focus,
+[data-theme="light"] .form-group textarea:focus {
+  background: #ffffff !important;
+  border-color: var(--accent) !important;
+}

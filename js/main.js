@@ -29,26 +29,26 @@ function initTheme() {
   const html = document.documentElement;
   const savedTheme = localStorage.getItem('theme');
   
-  // Set initial theme
-  if (savedTheme === 'dark') {
-    html.setAttribute('data-theme', 'dark');
+  // Set initial theme (Default is DARK, so we only check if user explicitly chose LIGHT)
+  if (savedTheme === 'light') {
+    html.setAttribute('data-theme', 'light');
+  } else {
+    // Re-ensure default (dark) if nothing saved or explicitly set to dark
+    html.removeAttribute('data-theme');
   }
 
   if (!toggle) return;
 
   toggle.addEventListener('click', () => {
-    const isDark = html.getAttribute('data-theme') === 'dark';
-    const newTheme = isDark ? 'light' : 'dark';
+    const isLight = html.getAttribute('data-theme') === 'light';
+    const newTheme = isLight ? 'dark' : 'light';
     
-    // Add temporary transition class to prevent layout shifts if needed
-    // But we already have transitions in CSS on html/body
-    
-    if (newTheme === 'dark') {
-      html.setAttribute('data-theme', 'dark');
-      localStorage.setItem('theme', 'dark');
+    if (newTheme === 'light') {
+      html.setAttribute('data-theme', 'light');
+      localStorage.setItem('theme', 'light');
     } else {
       html.removeAttribute('data-theme');
-      localStorage.setItem('theme', 'light');
+      localStorage.setItem('theme', 'dark');
     }
     
     // UI/UX Pro Max: haptic/feedback animation

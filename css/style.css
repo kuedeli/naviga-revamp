@@ -11,23 +11,23 @@
   --accent-dark:   #b8915f;
   --accent-light:  rgba(208, 168, 124, 0.15);
   
-  /* Theme-aware Variables (Default / Mixed Mode) */
+  /* Theme-aware Variables (DEFAULT: DARK MODE) */
   --bg-main:       #282F3A; /* primary dark navy */
   --bg-alt:        #1e2530; /* secondary dark */
   --bg-deep:       #181d27; /* darkest */
-  --bg-surface:    #f4f3ef; /* light beige sections */
-  --bg-card:       #ffffff; /* white cards */
+  --bg-surface:    #1e2530; /* dark alt navy */
+  --bg-card:       #1e2530; /* cards match alt dark */
   
   --text-main:     #ffffff; /* light text on dark */
   --text-alt:      #c8cdd6; /* muted light text */
-  --text-inverse:  #0d1117; /* dark text on light */
-  --text-body:     #3a3f4a; /* body text on light */
+  --text-inverse:  #ffffff; /* used for header/labels */
+  --text-body:     #c8cdd6; /* main paragraph text */
   
   --border-main:   rgba(208, 168, 124, 0.18);
-  --border-light:  rgba(0,0,0,0.08);
+  --border-light:  rgba(255, 255, 255, 0.08);
   
-  --shadow-main:   0 4px 32px rgba(0,0,0,0.12);
-  --shadow-heavy:  0 8px 48px rgba(0,0,0,0.3);
+  --shadow-main:   0 8px 40px rgba(0,0,0,0.4);
+  --shadow-heavy:  0 12px 60px rgba(0,0,0,0.6);
   
   --radius-sm:     6px;
   --radius-md:     12px;
@@ -37,21 +37,21 @@
   --nav-height:    72px;
 }
 
-/* 🌙 FULL DARK MODE OVERRIDES */
-[data-theme="dark"] {
-  --bg-main:       #181d27;
-  --bg-alt:        #0f131a;
-  --bg-deep:       #0a0d12;
-  --bg-surface:    #1e2530; /* turn beige into dark navy */
-  --bg-card:       #282F3A; /* dark cards */
+/* ☀️ LIGHT MODE OVERRIDES */
+[data-theme="light"] {
+  --bg-main:       #ffffff;
+  --bg-alt:        #f8f9fa;
+  --bg-deep:       #f4f3ef;
+  --bg-surface:    #f4f3ef; /* those light beige sections */
+  --bg-card:       #ffffff; /* white cards */
   
-  --text-main:     #ffffff;
-  --text-alt:      #a0a8b4;
-  --text-inverse:  #ffffff; /* text on light sections turns white */
-  --text-body:     #c8cdd6; /* body text turns light */
+  --text-main:     #0d1117;
+  --text-alt:      #4a5568;
+  --text-inverse:  #0d1117; /* text on those white/beige sections */
+  --text-body:     #3a3f4a; /* paragraph text turns dark */
   
-  --border-light:  rgba(255,255,255,0.08);
-  --shadow-main:   0 12px 40px rgba(0,0,0,0.4);
+  --border-light:  rgba(0,0,0,0.08);
+  --shadow-main:   0 4px 32px rgba(0,0,0,0.12);
 }
 
 /* 2. RESET & BASE */
@@ -240,15 +240,21 @@ h3 { font-size: 1.3rem; }
 
 /* Logo image — replaces emoji icon.
    mix-blend-mode:multiply makes the white background
-   transparent on the dark nav. On light sections it
+   transparent on the light nav. On light sections it
    still looks perfect as-is. */
 .nav-logo-img {
   height: 40px;
   width: auto;
   display: block;
   object-fit: contain;
-  mix-blend-mode: multiply;
+  /* DEFAULT (DARK MODE): Invert dark logo to white */
+  filter: brightness(0) invert(1);
   border-radius: 4px;
+}
+
+[data-theme="light"] .nav-logo-img {
+  filter: none; /* Show original dark logo on light background */
+  mix-blend-mode: multiply;
 }
 
 /* Fallback icon (hidden when img present) */
@@ -293,21 +299,26 @@ h3 { font-size: 1.3rem; }
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s;
 }
 
-[data-theme="dark"] .theme-toggle .sun {
-  transform: translateY(30px);
-  opacity: 0;
-}
-
-[data-theme="dark"] .theme-toggle .moon {
+/* Default (Dark Mode): Show SUN to switch to light */
+.theme-toggle .sun {
   transform: translateY(0);
   opacity: 1;
-  display: block !important;
 }
-
 .theme-toggle .moon {
   transform: translateY(-30px);
   opacity: 0;
   display: none;
+}
+
+/* Light Mode: Show MOON to switch back to dark */
+[data-theme="light"] .theme-toggle .sun {
+  transform: translateY(30px);
+  opacity: 0;
+}
+[data-theme="light"] .theme-toggle .moon {
+  transform: translateY(0);
+  opacity: 1;
+  display: block !important;
 }
 
 /* Footer logo — Refined contrast.

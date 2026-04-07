@@ -157,7 +157,17 @@ h3 { font-size: 1.3rem; }
 }
 .btn:hover .btn-arrow { transform: translateX(4px); }
 
-/* =============================================
+/* Footer logo — convert to pure white so it's visible on dark footer bg.
+   The dark PNG has white bg which multiply makes transparent,
+   but blue+gold get destroyed. invert makes everything a clean white mark. */
+.footer .nav-logo-img {
+  height: 44px;
+  filter: brightness(0) invert(1);
+  mix-blend-mode: normal;
+  opacity: 0.9;
+}
+
+/* ==============================================
    6. NAVIGATION
    ============================================= */
 .nav {
@@ -169,6 +179,10 @@ h3 { font-size: 1.3rem; }
   align-items: center;
   transition: background 0.4s ease, box-shadow 0.4s ease, border-bottom-color 0.4s;
   border-bottom: 1px solid transparent;
+  /* Subtle dark band — makes white links readable on BOTH light and dark hero panels */
+  background: rgba(24, 29, 38, 0.45);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
 
 .nav.scrolled {
@@ -212,13 +226,6 @@ h3 { font-size: 1.3rem; }
   border-radius: 4px;
 }
 
-/* Footer logo — slightly larger, white bg blends on dark bg */
-.footer .nav-logo-img {
-  height: 44px;
-  mix-blend-mode: multiply;
-  filter: brightness(1.05);
-}
-
 /* Fallback icon (hidden when img present) */
 .nav-logo-icon {
   width: 34px; height: 34px;
@@ -231,6 +238,7 @@ h3 { font-size: 1.3rem; }
   flex-shrink: 0;
 }
 
+
 .nav-links {
   display: flex;
   align-items: center;
@@ -240,7 +248,7 @@ h3 { font-size: 1.3rem; }
 .nav-links a {
   font-size: 0.9rem;
   font-weight: 500;
-  color: rgba(200, 205, 214, 0.9); /* WCAG: lifted from 0.25 opacity */
+  color: rgba(240, 240, 245, 0.92); /* bright white — readable on both panels */
   transition: color 0.2s;
   position: relative;
   padding-bottom: 2px;
@@ -667,7 +675,20 @@ h3 { font-size: 1.3rem; }
   background: rgba(208,168,124,0.06);
   transition: var(--transition);
   position: relative;
-  overflow: hidden;
+  /* REMOVED overflow:hidden — it was clipping labels inside */
+  overflow: visible;
+}
+
+/* Labels live OUTSIDE the circle, below it */
+.feature-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: rgba(205, 210, 220, 0.92); /* brighter: ~4.8:1 on bg-primary */
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+  margin-top: 0.5rem;
+  /* Remove any clipping from inside circle */
+  max-width: 160px;
 }
 
 .feature-circle::before {
@@ -792,10 +813,12 @@ h3 { font-size: 1.3rem; }
 
 .service-list li {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.65rem;
   font-size: 0.875rem;
-  color: var(--text-body);
+  /* On dark sections (split-section bg-primary etc.) text must be light */
+  color: rgba(210, 215, 225, 0.9);
+  line-height: 1.55;
 }
 
 .service-list li::before {
@@ -1224,8 +1247,8 @@ h3 { font-size: 1.3rem; }
 
 /* Team photo styles — replaces emoji avatar */
 .team-photo-wrap {
-  width: 120px;
-  height: 120px;
+  width: 150px;  /* increased from 120px for better face framing */
+  height: 150px;
   border-radius: 50%;
   border: 2.5px solid var(--accent);
   overflow: hidden;
@@ -1244,7 +1267,8 @@ h3 { font-size: 1.3rem; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top;
+  /* 25% from top = shows upper quarter of portrait = faces perfectly centred */
+  object-position: center 25%;
   display: block;
   transition: transform 0.4s ease;
 }

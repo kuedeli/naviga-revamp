@@ -1167,10 +1167,10 @@ h3 { font-size: 1.3rem; }
    14. FOOTER
    ============================================= */
 .footer {
-  background: #1e2530; /* Always dark navy for premium contrast */
+  background: var(--bg-alt);
   border-top: 1px solid var(--border-main);
   padding: clamp(3rem, 6vw, 5rem) 0 2rem;
-  color: #ffffff; /* Ensure text in footer is always light */
+  color: var(--text-main);
 }
 
 .footer-grid {
@@ -1791,4 +1791,23 @@ h3 { font-size: 1.3rem; }
 [data-theme="light"] .form-group textarea:focus {
   background: #ffffff !important;
   border-color: var(--accent) !important;
+}
+
+
+/* Footer Logo Contrast */
+.footer .nav-logo-img {
+  filter: brightness(0) invert(1); /* DEFAULT (DARK MODE) */
+}
+[data-theme="light"] .footer .nav-logo-img {
+  filter: none !important; /* DARK LOGO IN LIGHT MODE */
+  mix-blend-mode: multiply;
+}
+
+
+[data-theme="light"] .footer-links a,
+[data-theme="light"] .footer-desc {
+  color: var(--text-body) !important;
+}
+[data-theme="light"] .footer-col h4 {
+  color: var(--text-main) !important;
 }

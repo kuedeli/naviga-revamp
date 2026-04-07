@@ -9,6 +9,7 @@
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 document.addEventListener('DOMContentLoaded', () => {
+  initTheme();
   initStickyNav();
   initMobileMenu();
   initFadeElements();
@@ -19,6 +20,42 @@ document.addEventListener('DOMContentLoaded', () => {
   setActiveNavLink();
   addCursorPointers();
 });
+
+/* =============================================
+   0. THEME MANAGEMENT (Dark/Light Mode)
+   ============================================= */
+function initTheme() {
+  const toggle = document.querySelector('#themeToggle');
+  const html = document.documentElement;
+  const savedTheme = localStorage.getItem('theme');
+  
+  // Set initial theme
+  if (savedTheme === 'dark') {
+    html.setAttribute('data-theme', 'dark');
+  }
+
+  if (!toggle) return;
+
+  toggle.addEventListener('click', () => {
+    const isDark = html.getAttribute('data-theme') === 'dark';
+    const newTheme = isDark ? 'light' : 'dark';
+    
+    // Add temporary transition class to prevent layout shifts if needed
+    // But we already have transitions in CSS on html/body
+    
+    if (newTheme === 'dark') {
+      html.setAttribute('data-theme', 'dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      html.removeAttribute('data-theme');
+      localStorage.setItem('theme', 'light');
+    }
+    
+    // UI/UX Pro Max: haptic/feedback animation
+    toggle.style.transform = 'scale(0.95)';
+    setTimeout(() => { toggle.style.transform = ''; }, 100);
+  });
+}
 
 /* =============================================
    1. STICKY NAV

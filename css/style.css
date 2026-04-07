@@ -967,15 +967,16 @@ h3 { font-size: 1.3rem; }
   line-height: 1.55;
 }
 
-/* Light Mode: force high-contrast dark text for service list items */
-[data-theme="light"] .service-list li {
-  color: #2d3748;
-}
-
 /* Override: light color for dark backgrounds (like split-section) */
 .split-section .service-list li,
 .bg-dark .service-list li {
   color: rgba(210, 215, 225, 0.9);
+}
+
+/* Light Mode: force high-contrast dark text — beats .split-section override */
+[data-theme="light"] .service-list li,
+[data-theme="light"] .split-section .service-list li {
+  color: #2d3748 !important;
 }
 
 .service-list li::before {

@@ -36,7 +36,9 @@
 
   <!-- Mobile Overlay -->
   <div class="nav-mobile-overlay" id="navOverlay" role="dialog" aria-label="Navigation">
-    <button class="nav-mobile-close" id="navClose" aria-label="Menü schliessen">✕</button>
+    <button class="nav-mobile-close" id="navClose" aria-label="Menü schliessen">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+</button>
     <a href="firmen.html">Firmen</a>
     <a href="privatpersonen.html">Privatpersonen</a>
     <a href="die-naviga.html">Die Naviga</a>
@@ -65,6 +67,17 @@
           </a>
           <a href="#services" class="btn btn-outline-dark">Leistungen entdecken</a>
         </div>
+
+        <!-- Scroll indicator — inside left panel, bottom-left -->
+        <div class="hero-scroll-indicator" aria-hidden="true">
+          <svg width="22" height="34" viewBox="0 0 24 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="1" y="1" width="22" height="36" rx="11" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="12" cy="10" r="3" fill="currentColor">
+              <animateTransform attributeName="transform" type="translate" values="0,0;0,12;0,0" dur="2s" repeatCount="indefinite"/>
+            </circle>
+          </svg>
+          <span>Scroll</span>
+        </div>
       </div>
 
       <div class="hero-right" aria-hidden="true">
@@ -74,16 +87,6 @@
         <div class="hero-blob-text fade-in" style="transition-delay:0.5s">
           <h2>Die Finanzberater<br><strong>von Morgen</strong></h2>
         </div>
-      </div>
-
-      <div class="hero-scroll-indicator" aria-hidden="true">
-        <svg width="24" height="38" viewBox="0 0 24 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="1" y="1" width="22" height="36" rx="11" stroke="currentColor" stroke-width="1.5"/>
-          <circle cx="12" cy="10" r="3" fill="currentColor">
-            <animateTransform attributeName="transform" type="translate" values="0,0;0,12;0,0" dur="2s" repeatCount="indefinite"/>
-          </circle>
-        </svg>
-        <span>Scroll</span>
       </div>
     </section>
 
@@ -98,9 +101,15 @@
           </h2>
 
           <div class="scroll-pain-points stagger-children fade-up" style="transition-delay:0.2s">
-            <span class="pain-tag"><span class="x-icon">✗</span> Kurzfristige Provisionsgier</span>
-            <span class="pain-tag"><span class="x-icon">✗</span> Hohe Mitarbeiterfluktuationsrate</span>
-            <span class="pain-tag"><span class="x-icon">✗</span> Unmoralische Geschäftspraktiken</span>
+            <span class="pain-tag"><span class="x-icon" aria-hidden="true">
+  <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 2L8 8M8 2L2 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+</span> Kurzfristige Provisionsgier</span>
+            <span class="pain-tag"><span class="x-icon" aria-hidden="true">
+  <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 2L8 8M8 2L2 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+</span> Hohe Mitarbeiterfluktuationsrate</span>
+            <span class="pain-tag"><span class="x-icon" aria-hidden="true">
+  <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 2L8 8M8 2L2 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+</span> Unmoralische Geschäftspraktiken</span>
           </div>
 
           <p class="reveal-text" aria-label="Erklärungstext">
@@ -115,9 +124,7 @@
       <div class="container">
         <div class="grid-2">
           <div class="split-image fade-up">
-            <div class="split-image-placeholder" role="img" aria-label="Person arbeitet am Laptop in modernem Büro">
-              💼
-            </div>
+            <img src="naviga-meeting.jpg" alt="Das Naviga Team in einem modernen Beratungsgespräch" class="split-real-img" loading="lazy" />
           </div>
           <div class="split-content fade-up" style="transition-delay:0.15s">
             <span class="eyebrow">Der Weg nach vorne</span>
@@ -126,15 +133,21 @@
             </h2>
             <ul class="split-value-list" role="list">
               <li class="split-value-item">
-                <span class="split-value-icon" aria-hidden="true">✓</span>
+                <span class="split-value-icon" aria-hidden="true">
+                  <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
                 Vermittlung bedürfnisorientierter finanzieller Bildung an Kunden
               </li>
               <li class="split-value-item">
-                <span class="split-value-icon" aria-hidden="true">✓</span>
+                <span class="split-value-icon" aria-hidden="true">
+                  <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
                 Nachhaltiger Vermögensaufbau für sich selbst und Kunden
               </li>
               <li class="split-value-item">
-                <span class="split-value-icon" aria-hidden="true">✓</span>
+                <span class="split-value-icon" aria-hidden="true">
+                  <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
                 Langfristige Partnerschaften → hohe wiederkehrende Geschäftsprofite
               </li>
             </ul>
@@ -163,31 +176,36 @@
         <div class="features-grid stagger-children fade-up" style="transition-delay:0.2s">
           <div class="feature-circle-item">
             <div class="feature-circle">
-              <span class="feature-icon" aria-hidden="true">🤝</span>
+              <!-- Handshake / people icon -->
+              <svg class="feature-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
               <span class="feature-label">Tiefe Mitarbeiter-<br>fluktuationsrate</span>
             </div>
           </div>
           <div class="feature-circle-item">
             <div class="feature-circle">
-              <span class="feature-icon" aria-hidden="true">🏆</span>
+              <!-- Award icon -->
+              <svg class="feature-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
               <span class="feature-label">Anziehende<br>Arbeitgebermarke</span>
             </div>
           </div>
           <div class="feature-circle-item">
             <div class="feature-circle">
-              <span class="feature-icon" aria-hidden="true">🔗</span>
+              <!-- Link / network icon -->
+              <svg class="feature-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
               <span class="feature-label">Unbegrenzte<br>Leadquelle</span>
             </div>
           </div>
           <div class="feature-circle-item">
             <div class="feature-circle">
-              <span class="feature-icon" aria-hidden="true">💛</span>
+              <!-- Heart icon -->
+              <svg class="feature-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
               <span class="feature-label">Loyale Kunden &amp;<br>Partnerschaften</span>
             </div>
           </div>
           <div class="feature-circle-item">
             <div class="feature-circle">
-              <span class="feature-icon" aria-hidden="true">📈</span>
+              <!-- Trending up icon -->
+              <svg class="feature-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
               <span class="feature-label">Hohe wiederkehrende<br>Geschäftsprofite</span>
             </div>
           </div>
@@ -373,7 +391,7 @@
             Navigation durch die Finanzwelt – mit Integrität, Nachhaltigkeit und Herz.
           </p>
           <div class="footer-contact">
-            <a href="mailto:admin@naviga.ch">✉ admin@naviga.ch</a>
+            <a href="mailto:admin@naviga.ch"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:middle;margin-right:6px"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>admin@naviga.ch</a>
           </div>
         </div>
 
@@ -415,13 +433,13 @@
         <p class="footer-copyright">© 2024 Naviga GmbH. Alle Rechte vorbehalten.</p>
         <div class="footer-badges">
           <a href="https://www.cicero.ch/de/informationspflicht-vag-45" target="_blank" rel="noopener" class="footer-badge">
-            ✓ Cicero
+            <svg width="11" height="11" viewBox="0 0 10 8" fill="none" aria-hidden="true" style="display:inline-block;vertical-align:middle;margin-right:4px"><path d="M1 4L3.5 6.5L9 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Cicero
           </a>
           <a href="https://www.regservices.ch/beraterregister/beratersuche/" target="_blank" rel="noopener" class="footer-badge">
-            ✓ Regservices
+            <svg width="11" height="11" viewBox="0 0 10 8" fill="none" aria-hidden="true" style="display:inline-block;vertical-align:middle;margin-right:4px"><path d="M1 4L3.5 6.5L9 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Regservices
           </a>
           <a href="https://www.finma.ch/de/bewilligung/versicherungsvermittlung/registersuche/F01410816" target="_blank" rel="noopener" class="footer-badge">
-            ✓ FINMA F01410816
+            <svg width="11" height="11" viewBox="0 0 10 8" fill="none" aria-hidden="true" style="display:inline-block;vertical-align:middle;margin-right:4px"><path d="M1 4L3.5 6.5L9 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>FINMA F01410816
           </a>
         </div>
       </div>

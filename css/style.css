@@ -1811,3 +1811,55 @@ h3 { font-size: 1.3rem; }
 [data-theme="light"] .footer-col h4 {
   color: var(--text-main) !important;
 }
+
+
+/* =============================================
+   12. NORDIC BACKGROUND SYSTEM
+   ============================================= */
+.nordic-bg-stars, .nordic-bg-boat, .nordic-bg-mast, .nordic-bg-ship {
+  position: relative;
+  overflow: hidden;
+}
+
+.nordic-bg-stars::before, .nordic-bg-boat::before, .nordic-bg-mast::before, .nordic-bg-ship::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  z-index: 0;
+  /* UI/UX Pro Max: Extreme subtlety for Nordic branding */
+  filter: saturate(0) brightness(0.8) contrast(1.1);
+  opacity: 0.07;
+  transition: opacity 0.5s ease;
+}
+
+/* Specific Assets */
+.nordic-bg-stars::before { background-image: url('../media__1775568181380.png'); } /* Night Sky */
+.nordic-bg-boat::before  { background-image: url('../media__1775568191846.png'); } /* Boat Above */
+.nordic-bg-mast::before  { background-image: url('../media__1775568213693.png'); } /* Sail Mast */
+.nordic-bg-ship::before  { background-image: url('../media__1775568409792.png'); } /* catamaran */
+
+/* Theme Overrides for Watermark Visibility */
+[data-theme="light"] .nordic-bg-stars::before,
+[data-theme="light"] .nordic-bg-boat::before,
+[data-theme="light"] .nordic-bg-mast::before,
+[data-theme="light"] .nordic-bg-ship::before {
+  opacity: 0.12; /* Slightly more visible on light for better 'Nordic' feel */
+  filter: saturate(0) brightness(0.2) contrast(0.8);
+}
+
+/* Content isolation */
+.nordic-bg-stars > *, .nordic-bg-boat > *, .nordic-bg-mast > *, .nordic-bg-ship > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Parallax Effect (Desktop only for performance) */
+@media (min-width: 1024px) {
+  .nordic-bg-stars::before, .nordic-bg-boat::before, .nordic-bg-mast::before, .nordic-bg-ship::before {
+    background-attachment: fixed;
+  }
+}

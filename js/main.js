@@ -196,13 +196,13 @@ function initScrollTextReveal() {
     words.forEach((word, i) => {
       // Seqential reveal: first word starts at progress 0.1, last starts at 0.85
       const startShift    = 0.1;
-      const endShift      = 0.85;
+      const endShift      = 0.5;
       const wordThreshold = startShift + (i / words.length) * (endShift - startShift);
       
       // wordProgress: how far along this specific word is in its flip (0 to 1)
-      const wordProgress  = Math.max(0, (progress - wordThreshold) / 0.12);
-      const opacity       = Math.min(1, Math.max(0.15, wordProgress * 2.5));
-      const isLit         = wordProgress > 0.45;
+      const wordProgress  = Math.max(0, (progress - wordThreshold) / 0.035);
+      const opacity       = Math.min(1, Math.max(0.15, wordProgress * 5));
+      const isLit         = wordProgress > 0.1;
       const isAccent      = accentWords.some(aw => word.textContent.includes(aw));
 
       word.style.opacity = opacity;

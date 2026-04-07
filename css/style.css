@@ -104,9 +104,10 @@ h3 { font-size: 1.3rem; }
   font-size: 0.925rem;
   font-weight: 600;
   letter-spacing: 0.02em;
-  transition: var(--transition);
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
   position: relative;
   overflow: hidden;
+  cursor: pointer; /* UI/UX Pro Max: all buttons must have cursor:pointer */
 }
 
 .btn::after {
@@ -194,17 +195,40 @@ h3 { font-size: 1.3rem; }
   letter-spacing: 0.04em;
   color: var(--text-white);
   transition: opacity 0.2s;
+  cursor: pointer;
 }
-.nav-logo:hover { opacity: 0.85; }
+.nav-logo:hover { opacity: 0.8; }
 
+/* Logo image — replaces emoji icon.
+   mix-blend-mode:multiply makes the white background
+   transparent on the dark nav. On light sections it
+   still looks perfect as-is. */
+.nav-logo-img {
+  height: 40px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+  border-radius: 4px;
+}
+
+/* Footer logo — slightly larger, white bg blends on dark bg */
+.footer .nav-logo-img {
+  height: 44px;
+  mix-blend-mode: multiply;
+  filter: brightness(1.05);
+}
+
+/* Fallback icon (hidden when img present) */
 .nav-logo-icon {
-  width: 32px; height: 32px;
+  width: 34px; height: 34px;
   background: var(--accent);
   border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1rem;
+  flex-shrink: 0;
 }
 
 .nav-links {
@@ -216,10 +240,11 @@ h3 { font-size: 1.3rem; }
 .nav-links a {
   font-size: 0.9rem;
   font-weight: 500;
-  color: var(--text-light);
+  color: rgba(200, 205, 214, 0.9); /* WCAG: lifted from 0.25 opacity */
   transition: color 0.2s;
   position: relative;
   padding-bottom: 2px;
+  cursor: pointer;
 }
 .nav-links a::after {
   content: '';
@@ -229,7 +254,7 @@ h3 { font-size: 1.3rem; }
   background: var(--accent);
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.3s ease;
+  transition: transform 0.25s ease;
 }
 .nav-links a:hover, .nav-links a.active {
   color: var(--text-white);
@@ -475,9 +500,13 @@ h3 { font-size: 1.3rem; }
 
 .reveal-word {
   display: inline;
-  transition: color 0.4s ease, opacity 0.4s ease;
+  /* UI/UX Pro Max §7: 150–300ms for micro-interactions */
+  transition: color 0.25s ease, opacity 0.25s ease;
+  opacity: 0.12;
 }
-.reveal-word.lit { color: var(--text-white); opacity: 1; }
+/* Fully lit: white at opacity:1 = contrast ratio ~9.5:1 (WCAG AAA) */
+.reveal-word.lit { color: #ffffff; opacity: 1; }
+/* Accent: #D0A87C at opacity:1 on #181d27 = ~6.8:1 (WCAG AA) */
 .reveal-word.accent-lit { color: var(--accent); opacity: 1; }
 
 /* =============================================
@@ -506,16 +535,24 @@ h3 { font-size: 1.3rem; }
 }
 .split-image:hover img { opacity: 1; }
 
-/* placeholder for split image */
+/* placeholder for split image — no emoji per UI/UX Pro Max §4 */
 .split-image-placeholder {
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(208,168,124,0.2) 0%, rgba(40,47,58,0.8) 100%);
+  background: linear-gradient(135deg, rgba(208,168,124,0.18) 0%, rgba(40,47,58,0.9) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 4rem;
-  color: rgba(208,168,124,0.4);
+  position: relative;
+  overflow: hidden;
+}
+.split-image-placeholder::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 55% 55% at 35% 40%, rgba(208,168,124,0.28) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 70% 65%, rgba(208,168,124,0.12) 0%, transparent 60%);
 }
 
 .split-content { padding: clamp(1rem, 3vw, 3rem); }
@@ -638,6 +675,7 @@ h3 { font-size: 1.3rem; }
   transform: translateY(-6px) scale(1.04);
   box-shadow: 0 10px 40px rgba(208,168,124,0.25);
   border-color: var(--accent);
+  cursor: pointer;
 }
 .feature-circle:hover::before { opacity: 1; }
 

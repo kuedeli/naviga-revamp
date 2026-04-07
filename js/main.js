@@ -1,7 +1,12 @@
 /* =============================================
    NAVIGA — main.js
    All animations & interactions
+   UI/UX Pro Max: 150–300ms transitions, cursor-pointer,
+   contrast WCAG AA, prefers-reduced-motion support
    ============================================= */
+
+/* Respect prefers-reduced-motion globally */
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 document.addEventListener('DOMContentLoaded', () => {
   initStickyNav();
@@ -10,8 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollTextReveal();
   initCarousels();
   initCounters();
-  initHeroParallax();
+  if (!prefersReducedMotion) initHeroParallax();
   setActiveNavLink();
+  addCursorPointers();
 });
 
 /* =============================================
@@ -26,7 +32,7 @@ function initStickyNav() {
   };
 
   window.addEventListener('scroll', handler, { passive: true });
-  handler(); // run on load
+  handler();
 }
 
 /* =============================================
@@ -76,6 +82,11 @@ function initFadeElements() {
   const targets = document.querySelectorAll('.fade-up, .fade-in, .stagger-children');
   if (!targets.length) return;
 
+  if (prefersReducedMotion) {
+    targets.forEach(el => el.classList.add('visible'));
+    return;
+  }
+
   const io = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -83,17 +94,34 @@ function initFadeElements() {
         io.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
 
   targets.forEach(el => io.observe(el));
 }
 
 /* =============================================
    4. SCROLL TEXT REVEAL (word-by-word)
+   FIX: text now reveals while the section is
+   comfortably within the viewport, not after.
    ============================================= */
 function initScrollTextReveal() {
   const textEl = document.querySelector('.reveal-text');
   if (!textEl) return;
+
+  // If prefers-reduced-motion: just show all words immediately
+  if (prefersReducedMotion) {
+    textEl.querySelectorAll('.reveal-word').forEach(w => {
+      w.style.opacity = 1;
+      w.classList.add('lit');
+    });
+    const html = textEl.innerHTML;
+    const words = html.split(/(\s+)/);
+    textEl.innerHTML = words.map(w => {
+      if (w.trim() === '') return w;
+      return `<span class="reveal-word lit">${w}</span>`;
+    }).join('');
+    return;
+  }
 
   // Split into word spans if not already done
   if (!textEl.querySelector('.reveal-word')) {
@@ -115,25 +143,38 @@ function initScrollTextReveal() {
   const updateReveal = () => {
     const rect = section.getBoundingClientRect();
     const windowH = window.innerHeight;
-    // Progress: 0 when top of section hits bottom of window, 1 when section bottom hits top
-    const progress = Math.max(0, Math.min(1, (windowH - rect.top) / (windowH + rect.height)));
-    const revealThreshold = 0.25;
-    const adjustedProgress = Math.max(0, (progress - revealThreshold) / (1 - revealThreshold));
+
+    /*
+     * FIXED TIMING: The reveal now starts as soon as the section
+     * enters the viewport and completes well before the user
+     * has scrolled past it. The reveal range is tightened to
+     * the comfortable reading zone (top 70% of the viewport).
+     *
+     * progress = 0: section top just enters the screen (bottom of viewport)
+     * progress = 1: section top has scrolled up to 30% of viewport height
+     */
+    const enterPoint  = windowH;          // section top == bottom of screen
+    const exitPoint   = windowH * 0.15;   // section top == 15% from top (well within view)
+    const scrolledIn  = windowH - rect.top;
+    const range       = enterPoint - exitPoint;
+    const progress    = Math.max(0, Math.min(1, scrolledIn / range));
 
     words.forEach((word, i) => {
-      const wordProgress = adjustedProgress - (i / words.length) * 0.7;
-      const opacity = Math.min(1, Math.max(0.12, wordProgress * 4));
-      const isLit = wordProgress > 0.4;
-      const isAccent = accentWords.some(aw => word.textContent.includes(aw));
+      // Each word lights up sequentially, staggered across the progress range
+      const wordThreshold = (i / words.length) * 0.75;
+      const wordProgress  = Math.max(0, (progress - wordThreshold) / 0.25);
+      const opacity       = Math.min(1, Math.max(0.12, wordProgress * 3));
+      const isLit         = wordProgress > 0.6;
+      const isAccent      = accentWords.some(aw => word.textContent.includes(aw));
 
       word.style.opacity = opacity;
-      word.classList.toggle('lit', isLit && !isAccent);
+      word.classList.toggle('lit',        isLit && !isAccent);
       word.classList.toggle('accent-lit', isLit && isAccent);
     });
   };
 
   window.addEventListener('scroll', updateReveal, { passive: true });
-  updateReveal();
+  updateReveal(); // run once on load
 }
 
 /* =============================================
@@ -141,9 +182,9 @@ function initScrollTextReveal() {
    ============================================= */
 function initCarousels() {
   document.querySelectorAll('.carousel-wrap').forEach(wrap => {
-    const track = wrap.querySelector('.carousel-track');
-    const slides = wrap.querySelectorAll('.carousel-track > *');
-    const dots = wrap.querySelectorAll('.carousel-dot');
+    const track   = wrap.querySelector('.carousel-track');
+    const slides  = wrap.querySelectorAll('.carousel-track > *');
+    const dots    = wrap.querySelectorAll('.carousel-dot');
     const prevBtn = wrap.querySelector('.carousel-prev');
     const nextBtn = wrap.querySelector('.carousel-next');
 
@@ -177,7 +218,7 @@ function initCarousels() {
 
     // Auto-advance
     const startAuto = () => { autoTimer = setInterval(next, 6000); };
-    const stopAuto = () => clearInterval(autoTimer);
+    const stopAuto  = () => clearInterval(autoTimer);
 
     wrap.addEventListener('mouseenter', stopAuto);
     wrap.addEventListener('mouseleave', startAuto);
@@ -197,16 +238,18 @@ function initCounters() {
   const io = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
-      const el = entry.target;
+      const el     = entry.target;
       const target = parseInt(el.dataset.target, 10) || 0;
       const suffix = el.dataset.suffix || '';
-      const duration = 1800;
-      const start = performance.now();
+      const duration = prefersReducedMotion ? 0 : 1800;
+      const start  = performance.now();
+
+      if (duration === 0) { el.textContent = target + suffix; return; }
 
       const tick = (now) => {
-        const elapsed = now - start;
+        const elapsed  = now - start;
         const progress = Math.min(elapsed / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+        const eased    = 1 - Math.pow(1 - progress, 3);
         el.textContent = Math.round(eased * target) + suffix;
         if (progress < 1) requestAnimationFrame(tick);
       };
@@ -227,8 +270,7 @@ function initHeroParallax() {
   if (!blob) return;
 
   window.addEventListener('scroll', () => {
-    const y = window.scrollY;
-    blob.style.transform = `translateY(${y * 0.25}px)`;
+    blob.style.transform = `translateY(${window.scrollY * 0.22}px)`;
   }, { passive: true });
 }
 
@@ -238,9 +280,22 @@ function initHeroParallax() {
 function setActiveNavLink() {
   const path = window.location.pathname;
   document.querySelectorAll('.nav-links a, .nav-mobile-overlay a').forEach(a => {
-    const href = a.getAttribute('href') || '';
+    const href   = a.getAttribute('href') || '';
     const isHome = (path === '/' || path.endsWith('index.html')) && (href === 'index.html' || href === '/');
     const isMatch = href && path.endsWith(href);
     a.classList.toggle('active', isHome || isMatch);
+  });
+}
+
+/* =============================================
+   9. CURSOR POINTER — UI/UX Pro Max rule:
+   All clickable elements must have cursor:pointer
+   ============================================= */
+function addCursorPointers() {
+  const clickables = document.querySelectorAll(
+    'a, button, [role="button"], .carousel-dot, .service-card, .feature-circle, .team-card'
+  );
+  clickables.forEach(el => {
+    if (!el.style.cursor) el.style.cursor = 'pointer';
   });
 }

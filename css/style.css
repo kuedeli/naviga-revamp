@@ -446,7 +446,7 @@ h3 { font-size: 1.3rem; }
    7. HERO SECTION
    ============================================= */
 .hero {
-  min-height: 130vh;
+  min-height: 125vh;
   display: grid;
   grid-template-columns: 1fr 1fr;
   position: relative;
@@ -572,7 +572,7 @@ h3 { font-size: 1.3rem; }
    ============================================= */
 .scroll-text-section {
   background: var(--bg-deep);
-  min-height: 130vh; /* Scroll depth for animation */
+  min-height: 125vh; /* Scroll depth for animation */
   position: relative;
   padding: 0; /* Sticky inner handles padding */
 }
@@ -590,7 +590,8 @@ h3 { font-size: 1.3rem; }
 .scroll-text-inner {
   position: sticky;
   top: 0;
-  height: 100vh;
+  height: 80vh;
+  top: 10vh;
   max-width: 1000px;
   margin: 0 auto;
   padding: 0 clamp(1.5rem, 5vw, 4rem);

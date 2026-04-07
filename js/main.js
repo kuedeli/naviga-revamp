@@ -200,7 +200,7 @@ function initScrollTextReveal() {
       const wordThreshold = startShift + (i / words.length) * (endShift - startShift);
       
       // wordProgress: how far along this specific word is in its flip (0 to 1)
-      const wordProgress  = Math.max(0, (progress - wordThreshold) / 0.05);
+      const wordProgress  = Math.max(0, (progress - wordThreshold) / 0.08);
       const opacity       = Math.min(1, Math.max(0.15, wordProgress * 5));
       const isLit         = wordProgress > 0.1;
       const isAccent      = accentWords.some(aw => word.textContent.includes(aw));

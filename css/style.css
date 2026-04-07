@@ -1815,51 +1815,61 @@ h3 { font-size: 1.3rem; }
 
 /* =============================================
    12. NORDIC BACKGROUND SYSTEM
+   (Direct multi-layer approach — avoids overflow:hidden / fixed bug)
    ============================================= */
-.nordic-bg-stars, .nordic-bg-boat, .nordic-bg-mast, .nordic-bg-ship {
-  position: relative;
-  overflow: hidden;
-}
 
-.nordic-bg-stars::before, .nordic-bg-boat::before, .nordic-bg-mast::before, .nordic-bg-ship::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
+/* Dark Mode — dark navy gradient over de-saturated image */
+.nordic-bg-stars {
+  background-image:
+    linear-gradient(to bottom, rgba(14,20,33,0.82) 0%, rgba(14,20,33,0.72) 100%),
+    url('../pexels-eberhard-grossgasteiger-2098427.jpg');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+.nordic-bg-boat {
+  background-image:
+    linear-gradient(to bottom, rgba(14,20,33,0.82) 0%, rgba(14,20,33,0.72) 100%),
+    url('../pexels-andrew-neel-2326961.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  pointer-events: none;
-  z-index: 0;
-  /* UI/UX Pro Max: Extreme subtlety for Nordic branding */
-  filter: grayscale(1) brightness(0.7) contrast(1.1);
-  opacity: 0.15;
-  transition: opacity 0.5s ease;
+}
+.nordic-bg-mast {
+  background-image:
+    linear-gradient(to bottom, rgba(14,20,33,0.82) 0%, rgba(14,20,33,0.72) 100%),
+    url('../pexels-matthew-devries-2526042.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.nordic-bg-ship {
+  background-image:
+    linear-gradient(to bottom, rgba(14,20,33,0.82) 0%, rgba(14,20,33,0.72) 100%),
+    url('../pexels-kln-films-9825649.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-/* Specific Assets */
-.nordic-bg-stars::before { background-image: url('../pexels-eberhard-grossgasteiger-2098427.jpg'); } /* Night Sky */
-.nordic-bg-boat::before  { background-image: url('../pexels-andrew-neel-2326961.jpg'); } /* Boat Above */
-.nordic-bg-mast::before  { background-image: url('../pexels-matthew-devries-2526042.jpg'); } /* Sail Mast */
-.nordic-bg-ship::before  { background-image: url('../pexels-kln-films-9825649.jpg'); } /* catamaran */
-
-/* Theme Overrides for Watermark Visibility */
-[data-theme="light"] .nordic-bg-stars::before,
-[data-theme="light"] .nordic-bg-boat::before,
-[data-theme="light"] .nordic-bg-mast::before,
-[data-theme="light"] .nordic-bg-ship::before {
-  opacity: 0.22; /* Slightly more visible on light for better 'Nordic' feel */
-  filter: grayscale(1) brightness(0.4) contrast(0.9);
+/* Light Mode — soft white frosted glass over image */
+[data-theme="light"] .nordic-bg-stars {
+  background-image:
+    linear-gradient(to bottom, rgba(245,247,250,0.87) 0%, rgba(245,247,250,0.87) 100%),
+    url('../pexels-eberhard-grossgasteiger-2098427.jpg');
 }
-
-/* Content isolation */
-.nordic-bg-stars > *, .nordic-bg-boat > *, .nordic-bg-mast > *, .nordic-bg-ship > * {
-  position: relative;
-  z-index: 1;
+[data-theme="light"] .nordic-bg-boat {
+  background-image:
+    linear-gradient(to bottom, rgba(245,247,250,0.87) 0%, rgba(245,247,250,0.87) 100%),
+    url('../pexels-andrew-neel-2326961.jpg');
 }
-
-/* Parallax Effect (Desktop only for performance) */
-@media (min-width: 1024px) {
-  .nordic-bg-stars::before, .nordic-bg-boat::before, .nordic-bg-mast::before, .nordic-bg-ship::before {
-    background-attachment: fixed;
-  }
+[data-theme="light"] .nordic-bg-mast {
+  background-image:
+    linear-gradient(to bottom, rgba(245,247,250,0.87) 0%, rgba(245,247,250,0.87) 100%),
+    url('../pexels-matthew-devries-2526042.jpg');
+}
+[data-theme="light"] .nordic-bg-ship {
+  background-image:
+    linear-gradient(to bottom, rgba(245,247,250,0.87) 0%, rgba(245,247,250,0.87) 100%),
+    url('../pexels-kln-films-9825649.jpg');
 }

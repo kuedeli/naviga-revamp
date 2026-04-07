@@ -566,6 +566,13 @@ h3 { font-size: 1.3rem; }
   display: block;
   margin-top: 0.5rem;
 }
+/* Light Mode: blob text switches to dark for contrast over light gradient */
+[data-theme="light"] .hero-blob-text h2 {
+  color: #1a202c;
+}
+[data-theme="light"] .hero-blob-text strong {
+  color: #8a6534;
+}
 
 /* =============================================
    8. SCROLL-TEXT SECTION (High-End Sticky Reveal)
@@ -958,6 +965,11 @@ h3 { font-size: 1.3rem; }
   font-size: 0.875rem;
   color: var(--text-body);
   line-height: 1.55;
+}
+
+/* Light Mode: force high-contrast dark text for service list items */
+[data-theme="light"] .service-list li {
+  color: #2d3748;
 }
 
 /* Override: light color for dark backgrounds (like split-section) */

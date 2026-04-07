@@ -816,9 +816,14 @@ h3 { font-size: 1.3rem; }
   align-items: flex-start;
   gap: 0.65rem;
   font-size: 0.875rem;
-  /* On dark sections (split-section bg-primary etc.) text must be light */
-  color: rgba(210, 215, 225, 0.9);
+  color: var(--text-body);
   line-height: 1.55;
+}
+
+/* Override: light color for dark backgrounds (like split-section) */
+.split-section .service-list li,
+.bg-dark .service-list li {
+  color: rgba(210, 215, 225, 0.9);
 }
 
 .service-list li::before {
@@ -1488,7 +1493,26 @@ h3 { font-size: 1.3rem; }
   background: rgba(208,168,124,0.05);
 }
 
-.life-item-icon { font-size: 1.6rem; margin-bottom: 0.75rem; }
+.life-item-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.life-item:hover .life-item-icon {
+  transform: scale(1.1) rotate(2deg);
+}
+
+.life-item-svg {
+  width: 32px;
+  height: 32px;
+  stroke-width: 1.5;
+}
 .life-item h4 {
   color: var(--accent);
   font-size: 0.8rem;

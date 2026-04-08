@@ -594,7 +594,7 @@ h3 { font-size: 1.3rem; }
   background: var(--bg-deep);
   min-height: 110vh;
   position: relative;
-  padding: 4rem 0 0; /* breathing room above 'Überholte Strukturen' */
+  padding: 10rem 0 0; /* generous breathing room above 'Überholte Strukturen' */
 }
 
 .scroll-text-section::before {

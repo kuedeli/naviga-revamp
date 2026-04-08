@@ -600,6 +600,18 @@ h3 { font-size: 1.3rem; }
   color: #8a6534;
 }
 
+/* Light Mode: remove the near-black blob gradient — only keep the soft amber glow */
+[data-theme="light"] .hero-blob {
+  background: radial-gradient(ellipse 70% 80% at 45% 45%,
+    rgba(208,168,124,0.4) 0%,
+    rgba(208,168,124,0.1) 60%,
+    transparent 80%);
+}
+/* Light Mode: hero-right gets a warm ivory base instead of the dark bg-main */
+[data-theme="light"] .hero-right {
+  background: #f5f0e8;
+}
+
 /* Idle float animation for 'Die Finanzberater von Morgen' — dramatic drift */
 @keyframes heroBlobFloat {
   0%   { transform: translate(0px, 0px) rotate(0deg); }

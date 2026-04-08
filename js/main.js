@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCarousels();
   initCounters();
   if (!prefersReducedMotion) initHeroParallax();
+  if (!prefersReducedMotion) initHeroBlobFloat();
   setActiveNavLink();
   addCursorPointers();
 });
@@ -336,4 +337,59 @@ function addCursorPointers() {
   clickables.forEach(el => {
     if (!el.style.cursor) el.style.cursor = 'pointer';
   });
+}
+
+/* =============================================
+   10. HERO BLOB TEXT — Magnetic Float Effect
+   Tracks mouse on hero-right panel; smoothly moves
+   'Die Finanzberater von Morgen' as if magnetically floating.
+   ============================================= */
+function initHeroBlobFloat() {
+  const panel = document.getElementById('heroRight');
+  const text  = document.getElementById('heroFloatText');
+  if (!panel || !text) return;
+
+  let tx = 0, ty = 0;
+  let cx = 0, cy = 0;
+  let rafId = null;
+  const strength = 22;
+  const ease = 0.07;
+
+  text.style.animation = 'heroBlobFloat 4s ease-in-out infinite alternate';
+
+  panel.addEventListener('mouseenter', () => {
+    text.style.animation = 'none';
+    if (!rafId) rafId = requestAnimationFrame(loop);
+  });
+
+  panel.addEventListener('mousemove', (e) => {
+    const rect = panel.getBoundingClientRect();
+    const nx = ((e.clientX - rect.left) / rect.width  - 0.5) * 2;
+    const ny = ((e.clientY - rect.top)  / rect.height - 0.5) * 2;
+    tx = nx * strength;
+    ty = ny * strength;
+  });
+
+  panel.addEventListener('mouseleave', () => {
+    tx = 0; ty = 0;
+    const checkRest = () => {
+      if (Math.abs(cx) < 0.4 && Math.abs(cy) < 0.4) {
+        cancelAnimationFrame(rafId); rafId = null;
+        cx = 0; cy = 0;
+        text.style.transform = '';
+        text.style.animation = 'heroBlobFloat 4s ease-in-out infinite alternate';
+      } else {
+        rafId = requestAnimationFrame(checkRest);
+      }
+    };
+    cancelAnimationFrame(rafId);
+    rafId = requestAnimationFrame(checkRest);
+  });
+
+  function loop() {
+    cx += (tx - cx) * ease;
+    cy += (ty - cy) * ease;
+    text.style.transform = `translate(${cx.toFixed(2)}px, ${cy.toFixed(2)}px)`;
+    rafId = requestAnimationFrame(loop);
+  }
 }

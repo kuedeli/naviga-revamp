@@ -587,6 +587,19 @@ h3 { font-size: 1.3rem; }
   color: #8a6534;
 }
 
+/* Idle float animation for 'Die Finanzberater von Morgen' */
+@keyframes heroBlobFloat {
+  0%   { transform: translate(0px, 0px); }
+  33%  { transform: translate(-6px, -8px); }
+  66%  { transform: translate(5px, -4px); }
+  100% { transform: translate(-3px, 6px); }
+}
+/* Smooth transition so JS spring movements feel silky */
+#heroFloatText {
+  will-change: transform;
+  transition: transform 0.05s linear;
+}
+
 /* =============================================
    8. SCROLL-TEXT SECTION (High-End Sticky Reveal)
    ============================================= */

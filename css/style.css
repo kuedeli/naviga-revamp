@@ -587,17 +587,17 @@ h3 { font-size: 1.3rem; }
   color: #8a6534;
 }
 
-/* Idle float animation for 'Die Finanzberater von Morgen' */
+/* Idle float animation for 'Die Finanzberater von Morgen' — dramatic drift */
 @keyframes heroBlobFloat {
-  0%   { transform: translate(0px, 0px); }
-  33%  { transform: translate(-6px, -8px); }
-  66%  { transform: translate(5px, -4px); }
-  100% { transform: translate(-3px, 6px); }
+  0%   { transform: translate(0px, 0px) rotate(0deg); }
+  25%  { transform: translate(-18px, -16px) rotate(-1.5deg); }
+  50%  { transform: translate(14px, -20px) rotate(1deg); }
+  75%  { transform: translate(-10px, 12px) rotate(-0.8deg); }
+  100% { transform: translate(16px, 18px) rotate(1.2deg); }
 }
-/* Smooth transition so JS spring movements feel silky */
+/* No blocking transition — the JS spring handles all smoothness */
 #heroFloatText {
   will-change: transform;
-  transition: transform 0.05s linear;
 }
 
 /* =============================================

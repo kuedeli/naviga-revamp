@@ -352,10 +352,10 @@ function initHeroBlobFloat() {
   let tx = 0, ty = 0;
   let cx = 0, cy = 0;
   let rafId = null;
-  const strength = 22;
-  const ease = 0.07;
+  const strength = 50;
+  const ease = 0.05;
 
-  text.style.animation = 'heroBlobFloat 4s ease-in-out infinite alternate';
+  text.style.animation = 'heroBlobFloat 6s ease-in-out infinite alternate';
 
   panel.addEventListener('mouseenter', () => {
     text.style.animation = 'none';
@@ -377,7 +377,7 @@ function initHeroBlobFloat() {
         cancelAnimationFrame(rafId); rafId = null;
         cx = 0; cy = 0;
         text.style.transform = '';
-        text.style.animation = 'heroBlobFloat 4s ease-in-out infinite alternate';
+        text.style.animation = 'heroBlobFloat 6s ease-in-out infinite alternate';
       } else {
         rafId = requestAnimationFrame(checkRest);
       }

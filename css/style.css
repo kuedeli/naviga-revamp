@@ -512,13 +512,25 @@ h3 { font-size: 1.3rem; }
 
 /* Hero right — gradient blob */
 .hero-right {
-  background: var(--bg-main);
   position: relative;
-  background: var(--bg-main);
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
+  /* Sam Kolder Pexels image at low opacity behind the blob gradient */
+  background:
+    var(--bg-main),
+    url('../pexels-sam-kolder-2387877.jpg') center center / cover no-repeat;
+}
+.hero-right::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('../pexels-sam-kolder-2387877.jpg') center center / cover no-repeat;
+  opacity: 0.18;
+  mix-blend-mode: luminosity;
+  z-index: 0;
+  pointer-events: none;
 }
 
 .hero-blob-wrap {
@@ -527,6 +539,7 @@ h3 { font-size: 1.3rem; }
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 1; /* sits above the ::after background image */
 }
 
 .hero-blob {
@@ -579,9 +592,9 @@ h3 { font-size: 1.3rem; }
    ============================================= */
 .scroll-text-section {
   background: var(--bg-deep);
-  min-height: 110vh; /* Scroll depth for animation */
+  min-height: 110vh;
   position: relative;
-  padding: 0; /* Sticky inner handles padding */
+  padding: 4rem 0 0; /* breathing room above 'Überholte Strukturen' */
 }
 
 .scroll-text-section::before {

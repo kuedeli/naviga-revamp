@@ -341,8 +341,8 @@ function addCursorPointers() {
 
 /* =============================================
    10. HERO BLOB TEXT — Magnetic Float Effect
-   Tracks mouse on hero-right panel; smoothly moves
-   'Die Finanzberater von Morgen' as if magnetically floating.
+   Single unified rAF loop controlled by isHovering flag.
+   Eliminates the race condition between hover/leave states.
    ============================================= */
 function initHeroBlobFloat() {
   const panel = document.getElementById('heroRight');
@@ -352,14 +352,49 @@ function initHeroBlobFloat() {
   let tx = 0, ty = 0;
   let cx = 0, cy = 0;
   let rafId = null;
+  let isHovering = false;
   const strength = 50;
   const ease = 0.05;
 
-  text.style.animation = 'heroBlobFloat 6s ease-in-out infinite alternate';
+  function startIdle() {
+    text.style.animation = 'heroBlobFloat 6s ease-in-out infinite alternate';
+  }
+  function stopIdle() {
+    text.style.animation = 'none';
+  }
+
+  // Unified loop: follows mouse when hovering, springs back when not
+  function loop() {
+    if (isHovering) {
+      cx += (tx - cx) * ease;
+      cy += (ty - cy) * ease;
+      text.style.transform = `translate(${cx.toFixed(2)}px, ${cy.toFixed(2)}px)`;
+      rafId = requestAnimationFrame(loop);
+    } else {
+      // Spring back to (0,0)
+      cx += (0 - cx) * ease;
+      cy += (0 - cy) * ease;
+      text.style.transform = `translate(${cx.toFixed(2)}px, ${cy.toFixed(2)}px)`;
+      if (Math.abs(cx) < 0.4 && Math.abs(cy) < 0.4) {
+        // Settled — kill loop and resume idle CSS float
+        cx = 0; cy = 0;
+        text.style.transform = '';
+        rafId = null;
+        startIdle();
+      } else {
+        rafId = requestAnimationFrame(loop);
+      }
+    }
+  }
+
+  startIdle();
 
   panel.addEventListener('mouseenter', () => {
-    text.style.animation = 'none';
-    if (!rafId) rafId = requestAnimationFrame(loop);
+    isHovering = true;
+    stopIdle();
+    // Always cancel whatever was running, then start fresh
+    if (rafId) cancelAnimationFrame(rafId);
+    rafId = requestAnimationFrame(loop);
   });
 
   panel.addEventListener('mousemove', (e) => {
@@ -371,25 +406,8 @@ function initHeroBlobFloat() {
   });
 
   panel.addEventListener('mouseleave', () => {
+    isHovering = false;
     tx = 0; ty = 0;
-    const checkRest = () => {
-      if (Math.abs(cx) < 0.4 && Math.abs(cy) < 0.4) {
-        cancelAnimationFrame(rafId); rafId = null;
-        cx = 0; cy = 0;
-        text.style.transform = '';
-        text.style.animation = 'heroBlobFloat 6s ease-in-out infinite alternate';
-      } else {
-        rafId = requestAnimationFrame(checkRest);
-      }
-    };
-    cancelAnimationFrame(rafId);
-    rafId = requestAnimationFrame(checkRest);
+    // loop is already running, it will spring back and self-terminate
   });
-
-  function loop() {
-    cx += (tx - cx) * ease;
-    cy += (ty - cy) * ease;
-    text.style.transform = `translate(${cx.toFixed(2)}px, ${cy.toFixed(2)}px)`;
-    rafId = requestAnimationFrame(loop);
-  }
 }

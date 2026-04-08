@@ -353,7 +353,7 @@ function initHeroBlobFloat() {
   let cx = 0, cy = 0;
   let rafId = null;
   let isHovering = false;
-  const strength = 50;
+  const strength = 35;
   const ease = 0.05;
 
   function startIdle() {

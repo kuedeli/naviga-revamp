@@ -1815,7 +1815,7 @@ h3 { font-size: 1.3rem; }
   /* ── SCROLL-TEXT REVEAL: Reduce font & line-height on mobile ── */
   .scroll-text-section {
     min-height: auto !important;
-    padding: 2rem 0 3rem !important;
+    padding: 0 0 2rem !important; /* no top padding — avoids ghost dark strip */
   }
   .scroll-text-inner {
     position: relative !important;

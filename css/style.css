@@ -1760,6 +1760,8 @@ h3 { font-size: 1.3rem; }
     grid-template-columns: 1fr;
     min-height: auto;
   }
+  /* ── HERO: Collapse min-height so nordic background doesn't bleed below content ── */
+  .hero { min-height: 0 !important; }
   /* Hero-right: preserve Nordic bg image — DON'T override with bg-main */
   .hero-right {
     min-height: 42vh;
@@ -1815,13 +1817,13 @@ h3 { font-size: 1.3rem; }
   /* ── SCROLL-TEXT REVEAL: Reduce font & line-height on mobile ── */
   .scroll-text-section {
     min-height: auto !important;
-    padding: 0 0 2rem !important; /* no top padding — avoids ghost dark strip */
+    padding: 0 !important; /* zero padding — inner handles spacing */
   }
   .scroll-text-inner {
     position: relative !important;
     top: auto !important;
     height: auto !important;
-    padding: 0 1.5rem;
+    padding: 2rem 1.5rem 2rem !important; /* breathing room lives HERE not on bg area */
   }
   .reveal-text {
     font-size: clamp(1rem, 4.5vw, 1.3rem) !important;

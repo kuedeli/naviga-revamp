@@ -2031,3 +2031,18 @@ h3 { font-size: 1.3rem; }
     linear-gradient(to bottom, rgba(245,247,250,0.86) 0%, rgba(245,247,250,0.86) 100%),
     url('../pexels-kln-films-9825649.jpg') !important;
 }
+
+/* =============================================
+   MOBILE LATE OVERRIDE — must come AFTER nordic-bg classes
+   (CSS cascade: last !important wins at equal specificity)
+   ============================================= */
+@media (max-width: 900px) {
+  /* Strip the hero section's nordic background so it can't bleed
+     below the hero-left content as a dark strip.
+     hero-right keeps its own sam-kolder background untouched. */
+  .hero,
+  .hero.nordic-bg-stars {
+    background-image: none !important;
+    background-color: var(--bg-surface) !important;
+  }
+}

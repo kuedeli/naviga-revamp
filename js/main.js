@@ -195,9 +195,9 @@ function initScrollTextReveal() {
     const progress    = Math.max(0, Math.min(1, scrolledIn / range));
 
     words.forEach((word, i) => {
-      // Seqential reveal: first word starts at progress 0.1, last starts at 0.85
+      // Sequential reveal: first word starts at progress 0.1, last starts at 0.65
       const startShift    = 0.1;
-      const endShift      = 0.5;
+      const endShift      = 0.65;
       const wordThreshold = startShift + (i / words.length) * (endShift - startShift);
       
       // wordProgress: how far along this specific word is in its flip (0 to 1)

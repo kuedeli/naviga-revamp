@@ -1761,7 +1761,13 @@ h3 { font-size: 1.3rem; }
     min-height: auto;
   }
   /* ── HERO: Collapse min-height so nordic background doesn't bleed below content ── */
-  .hero { min-height: 0 !important; }
+  .hero {
+    min-height: 0 !important;
+    /* Strip the section-level nordic image — hero-right keeps its own background */
+    background-image: none !important;
+  }
+  /* Hide scroll indicator on mobile — adds clutter and contributes to the gap */
+  .hero-scroll-indicator { display: none !important; }
   /* Hero-right: preserve Nordic bg image — DON'T override with bg-main */
   .hero-right {
     min-height: 42vh;
